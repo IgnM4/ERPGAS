@@ -1,6 +1,6 @@
 from __future__ import annotations
-from typing import Optional, List
-from sqlmodel import SQLModel, Field, Relationship
+from typing import Optional
+from sqlmodel import SQLModel, Field
 from datetime import datetime
 
 class ProductoCilindro(SQLModel, table=True):
@@ -14,8 +14,6 @@ class ProductoCilindro(SQLModel, table=True):
     impuesto: float = 0.0
     stock_minimo: int = 0
 
-    items_compra: List[CompraItem] = Relationship(back_populates="producto")
-    items_venta: List[VentaItem] = Relationship(back_populates="producto")
 
 class PrecioHistorial(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -25,6 +23,7 @@ class PrecioHistorial(SQLModel, table=True):
     motivo: str
     fecha: datetime = Field(default_factory=datetime.utcnow)
     usuario: str = "system"
+
 
 class InventarioMovimiento(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -54,7 +53,6 @@ class Compra(SQLModel, table=True):
     subtotal: float = 0
     impuestos: float = 0
     total: float = 0
-    items: List[CompraItem] = Relationship(back_populates="compra")
 
 class CompraItem(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -62,8 +60,6 @@ class CompraItem(SQLModel, table=True):
     producto_id: int = Field(foreign_key="productocilindro.id")
     cantidad: int
     costo_unitario: float
-    compra: Optional[Compra] = Relationship(back_populates="items")
-    producto: Optional[ProductoCilindro] = Relationship(back_populates="items_compra")
 
 class Cliente(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -86,7 +82,6 @@ class Venta(SQLModel, table=True):
     subtotal: float = 0
     impuestos: float = 0
     total: float = 0
-    items: List[VentaItem] = Relationship(back_populates="venta")
 
 class VentaItem(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -95,8 +90,6 @@ class VentaItem(SQLModel, table=True):
     cantidad: int
     precio_unitario: float
     descuento: float = 0
-    venta: Optional[Venta] = Relationship(back_populates="items")
-    producto: Optional[ProductoCilindro] = Relationship(back_populates="items_venta")
 
 class Pago(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)

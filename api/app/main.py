@@ -1,4 +1,6 @@
 import os
+import logging
+from logging.config import dictConfig
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session
@@ -7,6 +9,32 @@ from .models import ProductoCilindro, Proveedor, Cliente, Caja, PrecioHistorial
 from .routers import products, clients, prices, inventory, purchases, sales, cashbox, reports
 from .deps import verify_api_key
 from .auth import router as auth_router
+
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+
+dictConfig(
+    {
+        "version": 1,
+        "formatters": {
+            "default": {
+                "format": "%(asctime)s %(levelname)s %(name)s %(message)s",
+            }
+        },
+        "handlers": {
+            "default": {
+                "class": "logging.StreamHandler",
+                "formatter": "default",
+                "level": LOG_LEVEL,
+            }
+        },
+        "root": {
+            "handlers": ["default"],
+            "level": LOG_LEVEL,
+        },
+    }
+)
+
+logger = logging.getLogger("erp_gas")
 
 app = FastAPI(title="ERP Gas API", version="1.0.0")
 
@@ -21,7 +49,7 @@ app.add_middleware(
 
 # Aplica API Key si está configurada
 def deps_chain():
-    return [verify_api_key]
+    return [Depends(verify_api_key)]
 
 app.include_router(auth_router, dependencies=deps_chain())
 app.include_router(products.router, dependencies=deps_chain())
@@ -35,8 +63,10 @@ app.include_router(reports.router, dependencies=deps_chain())
 
 @app.on_event("startup")
 def on_startup():
+    logger.info("Initializing database")
     init_db()
     seed()
+    logger.info("Application startup complete")
 
 
 def seed():
