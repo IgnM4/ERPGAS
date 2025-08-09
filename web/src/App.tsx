@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Nav from './components/Nav'
+import Header from './components/Header'
 import Dashboard from './pages/Dashboard'
 import Inventory from './pages/Inventory'
 import Clients from './pages/Clients'
@@ -24,6 +25,7 @@ export default function App() {
     <div className="flex min-h-screen">
       <Nav />
       <main className="flex-1 p-6 bg-slate-50 dark:bg-slate-900">
+        <Header />
         {route === '/' && <Dashboard />}
         {route === '/inventory' && <Inventory />}
         {route === '/prices' && <Prices />}
