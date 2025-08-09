@@ -14,6 +14,7 @@ export default function Nav() {
         <a href="#/purchases" className="hover:underline">Compras</a>
         <a href="#/cash" className="hover:underline">Caja</a>
         <a href="#/settings" className="hover:underline">Settings</a>
+        <a href="#/docs" className="hover:underline">Docs</a>
       </nav>
     </aside>
   )
