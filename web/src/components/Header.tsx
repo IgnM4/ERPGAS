@@ -1,13 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { useUi } from '../lib/store';
 
 export default function Header() {
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle('dark')
-  }
+  const { dark, setDark } = useUi();
   return (
-    <header className="mb-6 rounded-2xl bg-gradient-to-r from-brand.orange to-brand.orangeDark p-4 text-white flex items-center justify-between">
+    <header
+      role="banner"
+      className="mb-6 rounded-2xl p-4 text-white flex items-center justify-between bg-[var(--color-primary)]"
+      style={{ fontFamily: 'var(--font-family)' }}
+    >
       <h1 className="text-xl font-bold">ERP Gas</h1>
-      <button onClick={toggleTheme} className="rounded bg-white/20 px-3 py-1 text-sm hover:bg-white/30 transition">🌓</button>
+      <button
+        onClick={() => setDark(!dark)}
+        className="rounded bg-white/20 px-3 py-1 text-sm hover:bg-white/30 transition"
+        aria-label="Toggle theme"
+      >
+        🌓
+      </button>
     </header>
-  )
+  );
 }

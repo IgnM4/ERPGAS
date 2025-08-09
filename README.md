@@ -1,7 +1,10 @@
 # ERP Gas — Firebase + React
 
+Proyecto de ejemplo con Firebase Auth (email y proveedores Google/Facebook), Firestore y Cloud Functions con Express. Incluye control de roles mediante *custom claims* y una interfaz React + Vite + TailwindCSS con tema claro/oscuro personalizable.
+
 ### Requisitos
 - Docker y Docker Compose instalados.
+- Node.js 20
 
 ### Pasos rápidos
 1) Clona o copia este repo y crea el archivo `.env` en la raíz (usa el ejemplo del proyecto).
@@ -40,16 +43,14 @@ firebase deploy --only hosting,functions
 La configuración de Firebase se encuentra en `firebase.json` y `.firebaserc`.
 
 ### Pruebas y CI
-Las pruebas unitarias se ejecutan con `pytest`:
+Ejecuta las pruebas de la web y las funciones:
 
 ```bash
-cd api
-pytest
+npm run test:web
+npm run test:functions
 ```
 
-Un flujo de trabajo de GitHub Actions (`.github/workflows/tests.yml`) ejecuta estas pruebas en cada *push* o *pull request*.
+Los flujos de trabajo de GitHub Actions (`.github/workflows/ci-cd.yaml`) realizan lint, pruebas, compilación y despliegue automático a Firebase al hacer push a `main`.
 
-El flujo `.github/workflows/ci-cd.yaml` realiza lint, pruebas, compilación y despliegue automático a Firebase al hacer push a `main`.
-
-### Logging
-La API utiliza logging estructurado basado en la configuración estándar de Python, controlado por la variable de entorno `LOG_LEVEL`.
+### API
+Los endpoints disponibles se describen en `/#/docs` una vez desplegado el sitio.
