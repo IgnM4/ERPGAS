@@ -26,3 +26,16 @@ firebase login
 firebase deploy
 ```
 La configuración de Firebase se encuentra en `firebase.json` y `.firebaserc`.
+
+### Pruebas y CI
+Las pruebas unitarias se ejecutan con `pytest`:
+
+```bash
+cd api
+pytest
+```
+
+Un flujo de trabajo de GitHub Actions (`.github/workflows/tests.yml`) ejecuta estas pruebas en cada *push* o *pull request*.
+
+### Logging
+La API utiliza logging estructurado basado en la configuración estándar de Python, controlado por la variable de entorno `LOG_LEVEL`.
