@@ -71,9 +71,9 @@ def on_startup():
 
 def seed():
     from .db import engine
-    from sqlmodel import Session
+    from sqlmodel import Session, select
     with Session(engine) as session:
-        if not session.query(ProductoCilindro).first():
+        if not session.exec(select(ProductoCilindro)).first():
             formatos = [
                 ("5kg", "CIL-5KG", 12000.0, 6000.0, 20),
                 ("11kg", "CIL-11KG", 20000.0, 11000.0, 40),
