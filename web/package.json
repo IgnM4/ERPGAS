@@ -7,21 +7,31 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --host",
-    "deploy": "npm run build && firebase deploy"
+    "deploy": "npm run build && firebase deploy",
+    "test": "jest"
   },
   "dependencies": {
+    "firebase": "^10.12.2",
+    "jest-environment-jsdom": "^30.0.5",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.2",
+    "@testing-library/user-event": "^14.5.3",
+    "@types/jest": "^29.5.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "firebase-tools": "^13.11.2",
+    "jest": "^29.7.0",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.5.4",
-    "vite": "^5.4.2",
-    "firebase-tools": "^13.11.2"
+    "vite": "^5.4.2"
   }
 }

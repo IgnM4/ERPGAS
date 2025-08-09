@@ -13,6 +13,7 @@ export default function Nav() {
         <a href="#/sales" className="hover:underline">Ventas</a>
         <a href="#/purchases" className="hover:underline">Compras</a>
         <a href="#/cash" className="hover:underline">Caja</a>
+        <a href="#/settings" className="hover:underline">Settings</a>
       </nav>
     </aside>
   )
