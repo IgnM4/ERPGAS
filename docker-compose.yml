@@ -31,18 +31,18 @@ services:
       - ./api:/app
 
   web:
-  build: ./web
-  environment:
-    VITE_API_BASE: ${VITE_API_BASE}
-    VITE_BRAND_NAME: ${VITE_BRAND_NAME}
-  ports:
-    - "5173:5173"
-  volumes:
-    - ./web:/app
-    - web_node_modules:/app/node_modules   # <— evita que se pierdan deps
-  command: sh -c "npm install && npm run dev -- --host"  # <— instala al arrancar
-  depends_on:
-    - api
+    build: ./web
+    environment:
+      VITE_API_BASE: ${VITE_API_BASE}
+      VITE_BRAND_NAME: ${VITE_BRAND_NAME}
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./web:/app
+      - web_node_modules:/app/node_modules   # <— evita que se pierdan deps
+    command: sh -c "npm install && npm run dev -- --host"  # <— instala al arrancar
+    depends_on:
+      - api
 
 volumes:
   pgdata:
