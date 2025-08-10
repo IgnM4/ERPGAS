@@ -1,5 +1,8 @@
+import { useConfig } from './store';
+
 export async function api(path: string, options?: RequestInit) {
-  const res = await fetch(`/api${path}`, {
+  const base = useConfig.getState().apiBase || '';
+  const res = await fetch(`${base}${path}`, {
     headers: { 'Content-Type': 'application/json', ...(options?.headers || {}) },
     ...options,
   });
