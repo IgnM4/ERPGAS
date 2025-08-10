@@ -2,9 +2,10 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { useUi } from './lib/store';
+import { useUi, useConfig } from './lib/store';
 
 useUi.getState().init();
+useConfig.getState().init();
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
