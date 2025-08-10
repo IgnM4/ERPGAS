@@ -1,7 +1,7 @@
 {
   "name": "erpgas-monorepo",
   "private": true,
-  "workspaces": ["web", "functions"],
+  "workspaces": ["web", "functions", "desktop"],
   "scripts": {
     "dev:web": "npm --prefix web run dev",
     "build:web": "npm --prefix web run build",
@@ -9,6 +9,8 @@
     "dev:functions": "npm --prefix functions run dev",
     "build:functions": "npm --prefix functions run build",
     "test:functions": "npm --prefix functions run test",
+    "dev:desktop": "npm --prefix desktop run start",
+    "build:desktop": "npm --prefix web run build && npm --prefix desktop run build",
     "firebase:emulators": "firebase emulators:start",
     "deploy": "firebase deploy --only hosting,functions"
   },
