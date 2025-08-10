@@ -54,3 +54,23 @@ Los flujos de trabajo de GitHub Actions (`.github/workflows/ci-cd.yaml`) realiza
 
 ### API
 Los endpoints disponibles se describen en `/#/docs` una vez desplegado el sitio.
+
+### Aplicación de escritorio
+
+La aplicación de escritorio empaqueta el *frontend* web y el servidor FastAPI.
+
+1. Genera los ejecutables para tu plataforma:
+
+   ```bash
+   npm run build:desktop
+   ```
+
+   Este comando compila `web` y crea instaladores mediante Electron Builder.
+
+2. Los instaladores resultantes se guardan en `desktop/dist`:
+
+   - **Windows**: `*.exe` (NSIS)
+   - **Linux**: `*.AppImage`
+   - **macOS**: `*.dmg`
+
+Ejecuta el comando anterior en cada sistema operativo para obtener su instalador correspondiente.
