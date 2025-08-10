@@ -1,7 +1,10 @@
 from sqlmodel import SQLModel, create_engine, Session
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+psycopg://erp_user:erp_pass@db:5432/erp_gas")
+# Use SQLite by default for easier local development. If ``DATABASE_URL`` is
+# provided in the environment, it will override this value (for example to use
+# PostgreSQL in production).
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./erp_gas.db")
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 engine = create_engine(DATABASE_URL, echo=False, connect_args=connect_args)
 

@@ -13,6 +13,22 @@ Proyecto de ejemplo con Firebase Auth (email y proveedores Google/Facebook), Fir
 docker compose up --build
 ```
 
+### Base de datos
+
+La API usa **SQLite** por defecto, por lo que no se necesita un contenedor de
+base de datos adicional. El archivo se crea en `api/erp_gas.db` al ejecutar el
+comando anterior.
+
+Si prefieres **PostgreSQL**, levanta un servidor de Postgres y define la
+variable de entorno `DATABASE_URL` con la cadena de conexión, por ejemplo:
+
+```bash
+DATABASE_URL=postgresql+psycopg://erp_user:erp_pass@localhost:5432/erp_gas docker compose up --build
+```
+
+En este modo asegúrate de que el servicio de Postgres esté disponible y se
+puede agregar a `docker-compose.yml` si se desea manejarlo con Docker.
+
 ### Entorno local con Firebase
 1) Instala dependencias y crea tu `.env` basado en `.env.example`.
 2) Inicia la app web y funciones en modo desarrollo:
