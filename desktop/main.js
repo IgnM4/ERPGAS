@@ -16,6 +16,7 @@ function createWindow() {
     : path.join(process.resourcesPath, 'web');
 
   win.loadFile(path.join(webDist, 'index.html'));
+  if (isDev) win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {

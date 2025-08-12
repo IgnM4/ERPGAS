@@ -17,7 +17,8 @@ dictConfig(
         "version": 1,
         "formatters": {
             "default": {
-                "format": "%(asctime)s %(levelname)s %(name)s %(message)s",
+                "format": "%(message)s",
+                "class": "pythonjsonlogger.jsonlogger.JsonFormatter",
             }
         },
         "handlers": {
