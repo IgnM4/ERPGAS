@@ -41,18 +41,33 @@ export default function App() {
 
   async function handleRegister() {
     setLoading(true); setError('')
-    try { await registerWithEmail(email, password); alert('Verifica tu correo') } catch (e:any) { setError(e.message) }
+    try { await registerWithEmail(email, password); alert('Verifica tu correo') }
+    catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message)
+      }
+    }
     finally { setLoading(false) }
   }
 
   async function handleLogin() {
     setLoading(true); setError('')
-    try { await loginWithEmail(email, password) } catch (e:any) { setError(e.message) }
+    try { await loginWithEmail(email, password) }
+    catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message)
+      }
+    }
     finally { setLoading(false) }
   }
 
   async function handleReset() {
-    try { await resetPassword(email); alert('Email de recuperación enviado') } catch (e:any) { setError(e.message) }
+    try { await resetPassword(email); alert('Email de recuperación enviado') }
+    catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message)
+      }
+    }
   }
   return (
     <div className="flex min-h-screen">
