@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { act } from 'react-dom/test-utils';
-jest.mock('../src/lib/firebase');
+import { vi, test, expect } from 'vitest';
+vi.mock('../src/lib/firebase');
 import App from '../src/App';
 
 test('renders header', async () => {

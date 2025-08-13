@@ -6,6 +6,7 @@ export default defineConfig({
   server: { host: true },
   test: {
     environment: 'jsdom',
-    setupFiles: './src/test/setup.ts'
+    setupFiles: './src/test/setup.ts',
+    exclude: ['node_modules/**', 'dist/**', 'tests/smoke.spec.ts']
   }
 })
