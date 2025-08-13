@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "your-firebase-project-id"
-  }
+    "default": "your-firebase-project-id",
+    "ERPGAS": "erpgas-9dac0"
+  },
+  "targets": {},
+  "etags": {}
 }
