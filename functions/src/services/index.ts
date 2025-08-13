@@ -1,1 +1,3 @@
-// Placeholder for domain services such as inventory, cashbox, and pricing.
+export * as prices from './prices';
+export * as sales from './sales';
+export * as cashbox from './cashbox';
